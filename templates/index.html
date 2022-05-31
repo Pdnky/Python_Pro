@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>HomeWork2</title>
+</head>
+<body>
+
+    <h1>Music library</h1>
+
+    <table border="1">
+
+        <form method="POST" action=".">
+            <input name="name" type="text" placeholder="Search by song name">
+            <button name="search" type="submit" value="name">Search</button>
+        </form>
+
+        <form method="POST" action=".">
+            <input name="band" type="text" placeholder="Search by Author">
+            <button name="search" type="submit" value="band">Search</button>
+        </form>
+
+        <p></p>
+
+        <form method="POST" action=".">
+            <button name="search" type="submit" value="alltracks">all_tracks</button>
+        </form>
+
+    </table>
+
+    <h3><p> Add new track </p></h3>
+
+    <table border="2">
+
+        <form method="POST" action=".">
+            <input name="name" type="text" placeholder="song name">
+            <input name="band" type="text" placeholder="band">
+            <input name="album" type="text" placeholder="album">
+            <input name="genre" type="text" placeholder="genre">
+            <input name="year" type="text" placeholder="year">
+            <button name="add_new" type="submit" value="1">Add New Track</button>
+        </form>
+            </span>
+    </table>
+
+    <table border="3">
+
+    {% for id, name, band, album, genre, year in context %}
+
+                <form method="POST" action=".">
+                    <p></p>
+                    <input name="name" type="text" value="{{ name }}">
+                    <input name="band" type="text" value="{{ band }}">
+                    <input name="album" type="text" value="{{ album }}">
+                    <input name="genre" type="text" value="{{ genre }}">
+                    <input name="year" type="text" value="{{ year }}">
+
+                        <button name="update" type="submit" value="{{ id }}">Update</button>
+                        <form method="POST" action=".">
+                            <button name="delete" type="submit" value="{{ id }}">Delete</button>
+                        </form>
+                </form>
+            {% endfor %}
+        </table>
+
+
+</body>
+</html>
