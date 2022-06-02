@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>GenerateStudent</title>
+</head>
+<body>
+    <table border="1">
+        <td> <a href="/generate-student/">Генерация студента</a> </td>
+        <td> <a href="/generate-students/">Генерация студентов</a> </td>
+        <td> <a href="/AllData/">Вывод данных</a> </td>
+    </table>
+
+    <p>
+
+    <form method="post" action="."> {% csrf_token %}
+        <table border="2">
+        <tr><td>Генерация студентов</td></tr>
+        <tr><td>
+            <input type="number" name="count" max="100" min="1" step="1">
+            <button type="submit"> Генерировать </button>
+        </td></tr>
+        </table>
+
+        <table border="3">
+            <tr><th>Num</th><th>Student Name</th><th>Student Marks</th></tr>
+            {% for element in student %}
+            <tr><td></td><td><li>{{ element.name }}</td> <td>{{ element.email }}</td></tr>
+            {% endfor %}
+        </table>
+
+    </form>
+
+</body>
+</html>

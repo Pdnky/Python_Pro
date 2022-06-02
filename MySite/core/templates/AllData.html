@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>GenerateStudent</title>
+</head>
+<body>
+    <table border="1">
+        <td> <a href="/generate-student/">Генерация студента</a> </td>
+        <td> <a href="/generate-students/">Генерация студентов</a> </td>
+        <td> <a href="/AllData/">Вывод данных</a> </td>
+    </table>
+
+    <p>
+
+
+    <th><table border="1" align="left">
+             <th>Student Name</th><th>Student email</th>
+            {% for element in student %}
+            <tr><td>{{ element.name }}</td> <td>{{ element.email }}</td>
+                {% endfor %}
+    </table></th>
+
+    <th><table border="1" align="left">
+            <th> Teacher name </th><th> Teacher email </th>
+                {% for element2 in teacher %}
+            <tr><td>{{ element2.name}}</td> <td>{{element2.email}}</td>
+                {% endfor %}
+    </table></th>
+
+    <th><table border="1" align="left">
+            <th> Group </th>
+                {% for element3 in group %}
+            <tr><td>{{ element3.name}}</td>
+                {% endfor %}
+    </table></th>
+
+
+
+</body>
+</html>
