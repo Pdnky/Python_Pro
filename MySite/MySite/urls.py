@@ -23,4 +23,6 @@ urlpatterns = [
     path('generate-student/', views.GenerateStudent.as_view()),
     path('generate-students/', views.GenerateStudents.as_view()),
     path('AllData/', views.AllData.as_view()),
+    path('create-student/', views.StudentCreate.as_view()),
+    path('create-teacher/', views.TeacherCreate.as_view())
 ]

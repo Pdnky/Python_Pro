@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>MainPage</title>
+    <title>CreateStudent</title>
 </head>
 <body>
     <table border="1">
@@ -13,9 +13,22 @@
         <td> <a href="/create-teacher/">Создание учителя</a> </td>
     </table>
 
+    <p>
 
-<h>:^):^):^):^):^):^):^):^):^):^):^):^):^):^):^):^):^):^):^):^):^):^):^)</h>
+    <form method="post">{% csrf_token %}
+        {{ form }}
+        <button type="submit"> Добавить студента </button>
 
+        <p>
+
+        <table border="2">
+            <td>Последний созданный студент: </td><tr></tr>
+        <td>Name</td><td>email</td><tr></tr>
+        <td>{{student.name}}</td><td>{{student.email}}</td>
+
+        </table>
+
+    </form>
 
 </body>
 </html>

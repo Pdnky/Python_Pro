@@ -1,9 +1,9 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.views import View
-from django.views.generic import TemplateView
+from django.views.generic import TemplateView, FormView
 from core.models import Student, Group, Teacher
 from faker import Faker
-
+from core.forms import AddStudentForm, AddTeacherForm
 
 fake = Faker()
 
@@ -71,3 +71,40 @@ class AllData(TemplateView):
         })
         return context
 
+
+class StudentCreate(TemplateView):
+    template_name = 'StudentCreate.html'
+
+    def get_context_data(self, **kwargs):
+        context = super(StudentCreate, self).get_context_data(**kwargs)
+        student = Student.objects.last
+        context.update({
+            'student': student,
+            'form': AddStudentForm,
+        })
+        return context
+
+    def post(self, request):
+        form = AddStudentForm(data=request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('/create-student/')
+
+
+class TeacherCreate(FormView):
+    template_name = 'TeacherCreate.html'
+    form_class = AddTeacherForm
+    success_url = '/create-teacher/'
+
+    def get_context_data(self, **kwargs):
+        context = super(TeacherCreate, self).get_context_data(**kwargs)
+        teacher = Teacher.objects.last()
+        context.update({
+            'teacher': teacher,
+            'form': AddTeacherForm(),
+        })
+        return context
+
+    def form_valid(self, form):
+        form.save()
+        return super(TeacherCreate, self).form_valid(form)
