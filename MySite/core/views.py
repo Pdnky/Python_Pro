@@ -1,9 +1,10 @@
 from django.shortcuts import render, redirect
 from django.views import View
-from django.views.generic import TemplateView, FormView
+from django.views.generic import TemplateView, FormView, UpdateView
 from core.models import Student, Group, Teacher
 from faker import Faker
 from core.forms import AddStudentForm, AddTeacherForm
+from django.shortcuts import get_object_or_404
 
 fake = Faker()
 
@@ -108,3 +109,46 @@ class TeacherCreate(FormView):
     def form_valid(self, form):
         form.save()
         return super(TeacherCreate, self).form_valid(form)
+
+
+class StudentUpdateView(TemplateView):
+    template_name = 'EditStT.html'
+
+    def dispatch(self, request, *args, **kwargs):
+        self.student = get_object_or_404(Student, id=self.kwargs['id'])
+        return super(StudentUpdateView, self).dispatch(request, *args, **kwargs)
+
+    def get_context_data(self, **kwargs):
+        context = super(StudentUpdateView, self).get_context_data()
+        context['form'] = AddStudentForm(
+            initial = {
+                'name' : self.student.name,
+                'email': self.student.email,
+            },
+            instance=self.student
+        )
+        return context
+
+    def post(self, request, id):
+        form = AddStudentForm(data=request.POST, instance=self.student)
+        if form.is_valid():
+            form.save()
+            return redirect('/create-student/')
+        return self.render_to_response(context={'form': form})
+
+
+class TeacherUpdateView(UpdateView):
+    template_name = 'EditStT.html'
+    model = Teacher
+    form_class = AddTeacherForm
+    success_url = '/AllData/'
+    pk_url_kwarg = 'id'
+
+    def get_context_data(self, **kwargs):
+        context = super(TeacherUpdateView, self).get_context_data(**kwargs)
+        teacher = Teacher.objects.all()
+        context.update({
+            'teacher': teacher,
+        })
+        return context
+

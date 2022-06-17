@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>GenerateStudent</title>
+</head>
+<body>
+    <table border="1">
+        <td> <a href="/generate-student/">Генерация студента</a> </td>
+        <td> <a href="/generate-students/">Генерация студентов</a> </td>
+        <td> <a href="/AllData/">Вывод данных</a> </td>
+        <td> <a href="/create-student/">Создание студента</a> </td>
+        <td> <a href="/create-teacher/">Создание учителя</a> </td>
+    </table>
+
+<form method="post">{% csrf_token %}
+        {{ form }}
+        <button type="submit"> Cохранить изменения </button>
+
+        <p>
+
+        </table>
+
+    </form>
+
+</body>
+</html>

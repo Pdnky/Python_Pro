@@ -15,18 +15,17 @@
 
     <p>
 
-
     <th><table border="1" align="left">
-             <th>Student Name</th><th>Student email</th>
+             <th>Student Name</th><th>Student email</th><th>edit</th>
             {% for element in student %}
-            <tr><td>{{ element.name }}</td> <td>{{ element.email }}</td>
+            <tr><td>{{ element.name }}</td> <td>{{ element.email }}</td><td><a href="/student-update/{{ element.id }}">update</a> </td>
                 {% endfor %}
-    </table></th>
+    </table></tr>
 
     <th><table border="1" align="left">
-            <th> Teacher name </th><th> Teacher email </th>
+            <th> Teacher name </th><th> Teacher email </th> <th>edit</th>
                 {% for element2 in teacher %}
-            <tr><td>{{ element2.name}}</td> <td>{{element2.email}}</td>
+            <tr><td>{{ element2.name}}</td> <td>{{element2.email}}</td> <td><a href="/teacher-update/{{ element2.id }}">update</a> </td>
                 {% endfor %}
     </table></th>
 

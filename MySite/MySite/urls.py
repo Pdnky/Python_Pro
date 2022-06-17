@@ -24,5 +24,7 @@ urlpatterns = [
     path('generate-students/', views.GenerateStudents.as_view()),
     path('AllData/', views.AllData.as_view()),
     path('create-student/', views.StudentCreate.as_view()),
-    path('create-teacher/', views.TeacherCreate.as_view())
+    path('create-teacher/', views.TeacherCreate.as_view()),
+    path('student-update/<int:id>', views.StudentUpdateView.as_view()),
+    path('teacher-update/<int:id>', views.TeacherUpdateView.as_view()),
 ]
